@@ -3,9 +3,16 @@ pipeline {
 
     stages {
 
-        stage('Build') {
+       stage('Build') {
             steps {
-                sh "mvn clean install package"
+                // Clean and compile the project using Maven
+                sh 'mvn clean compile'
+            }
+        }
+        stage('Package') {
+            steps {
+                // Package the web application into a WAR file
+                sh 'mvn package'
             }
         }
         stage('Archive') {
