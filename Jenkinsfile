@@ -3,10 +3,9 @@ pipeline {
 
     stages {
 
-        stage('Build') {
+       stage('Build') {
             steps {
-                // Build the Java application using Maven
-                sh 'mvn clean install package'
+                sh "mvn clean install package"
             }
         }
         stage('Archive') {
