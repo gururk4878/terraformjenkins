@@ -3,10 +3,10 @@ pipeline {
 
     stages {
 
-       stage('Build') {
-            withMaven(maven: 'mvn') {
-            sh "mvn clean package"
-        }
+        stage('Build') {
+            steps {
+                sh "mvn clean install package"
+            }
         }
         stage('Archive') {
             steps {
