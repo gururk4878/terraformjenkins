@@ -9,7 +9,14 @@ pipeline {
                 sh 'mvn clean install package'
             }
         }
- 
+
+        stage('Test') {
+            steps {
+                // Run the unit tests using Maven
+                sh 'mvn test'
+            }
+        }
+        
         stage('Archive') {
             steps {
                 // Archive the generated WAR file
