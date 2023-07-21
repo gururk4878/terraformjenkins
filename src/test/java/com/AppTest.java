@@ -1,14 +1,20 @@
-package com.example;
+package com.example.web.models;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-public class AppTest {
+public class MessageTest {
 
     @Test
-    public void testApp() {
-        App app = new App();
-        String result = app.sayHello();
-        assertEquals("Hello, World!", result);
+    public void testGetText() {
+        // Arrange
+        String expectedText = "Hello, World!";
+        Message message = new Message(expectedText);
+
+        // Act
+        String actualText = message.getText();
+
+        // Assert
+        Assertions.assertEquals(expectedText, actualText);
     }
 }
