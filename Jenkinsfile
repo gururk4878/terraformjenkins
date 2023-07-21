@@ -13,7 +13,7 @@ pipeline {
         stage('Archive') {
             steps {
                 // Archive the generated WAR file
-                archive includes: 'target/sample-webapp.war'
+                archiveArtifacts artifacts: 'target/sample-webapp.war'
             }
         }
     }
