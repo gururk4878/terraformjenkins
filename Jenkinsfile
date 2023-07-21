@@ -9,6 +9,13 @@ pipeline {
                 sh 'mvn test'
             }
         }
+
+        stage('Static Code Analysis') {
+            steps {
+                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=utkarash-khare_java-cicd'
+            }
+        }
+        
         
        stage('Build') {
             steps {
