@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "/opt/maven/bin:${env.PATH}"
+    }
+
     stages {
 
          stage('Test') {
