@@ -29,7 +29,7 @@ pipeline {
      withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_CREDENTIALS', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                         sh "docker build -t ${DOCKER_USERNAME}/sample-webapp:jenkins ."
                         sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
-                        sh "docker push $(DOCKER_USERNAME)/sample-webapp:jenkins"           
+                        sh "docker push ${DOCKER_USERNAME}/sample-webapp:jenkins"           
             }
         }
     }
