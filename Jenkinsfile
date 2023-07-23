@@ -24,17 +24,17 @@ pipeline {
             }
         }
 
-        stage('Publish') {
+        stage('Build Image') {
             steps {
-                sh "mvn deploy"
+                sh "docker build -t $(DOCKER_USERNAME)/sample-webapp:jenkins ."            
             }
         }
 
-         stage('Deploy') {
+          stage('Build Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'tomcat-manager-credentials', usernameVariable: 'TOMCAT_USERNAME', passwordVariable: 'TOMCAT_PASSWORD')]) {
-                    sh "mvn tomcat7:redeploy -Dtomcat.username=${TOMCAT_USERNAME} -Dtomcat.password=${TOMCAT_PASSWORD} -Dtomcat.url=http://<hostname>:<port>/manager/text -Dmaven.tomcat.path=/my-java-webapp"
-                }
+                sh "docker login -u $(DOCKER_USERNAME) -p $(DOCKER_PASSWORD)"
+                sh "docker push -t $(DOCKER_USERNAME)/sample-webapp:jenkins ."            
             }
+        }
     }
 }
